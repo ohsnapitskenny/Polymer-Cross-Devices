@@ -1,0 +1,107 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+
+<!-- Cross Devices Library -->
+<link rel="import" href="../../bower_components/xdmvcclient/polymer/xdmvc-synchronised.html">
+<link rel="import" href="../../bower_components/xdmvcclient/polymer/xdmvc-connection.html">
+<link rel="import" href="../../bower_components/xdmvcclient/polymer/xdmvc-roles.html">
+<link rel="import" href="../../bower_components/xdmvcclient/polymer/xdmvc-devices.html">
+
+
+<!-- Moving Block -->
+<link rel="import" href="moving-block.html">
+
+<dom-module id="polymer-cross-devices-app">
+  <template>
+    <style>
+       :host {
+        display: block;
+        height: 100%;
+        margin: 0;
+      }
+
+      app-header {
+        background-color: #1e88e5;
+      }
+
+      app-toolbar {
+        background-color: var(--paper-blue-500);
+        color: white;
+        text-align: center;
+      }
+
+      #playing-field {
+        background: #f0f0f0;
+        height: 550px;
+        margin: 0 auto;
+        text-align: center;
+        width: 100%;
+      }
+
+      #button-container {
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+
+    <xdmvc-connection server="polymer-crossApp-demo" peerport="9000" socketport="3001" ajaxport="9001" reconnect architecture="client-server">
+    </xdmvc-connection>
+
+    <!-- <xdmvc-synchronised id="persistent" objects='{{persisted}}' update-server>
+    </xdmvc-synchronised> -->
+
+    <xdmvc-roles id="roles" available='["owner", "visitor"]' roles='{{roles}}'>
+    </xdmvc-roles>
+    
+    <xdmvc-devices id="devices" devices="{{devices}}"></xdmvc-devices>
+
+    <xdmvc-url-pairing connector="visitor" connectee="owner"></xdmvc-url-pairing>
+
+
+    <app-header>
+      <app-toolbar>
+        <div main-title>Cross Device Demo</div>
+      </app-toolbar>
+    </app-header>
+
+    <div id="playing-field">
+      <moving-block></moving-block>
+    </div>
+
+
+    <div id="button-container">
+      <paper-button on-click="_restart">RESET</paper-button>
+    </div>
+
+
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PolymerCrossDevicesApp extends Polymer.Element {
+      static get is() {
+        return 'polymer-cross-devices-app';
+      }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'polymer-cross-devices-app'
+          }
+        };
+      }
+
+      _restart() {
+        window.location.reload();
+      }
+    }
+
+    window.customElements.define(PolymerCrossDevicesApp.is, PolymerCrossDevicesApp);
+  </script>
+</dom-module>

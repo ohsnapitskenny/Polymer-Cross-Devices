@@ -1,0 +1,7 @@
+{
+  "name": "polymer-cross-devices",
+  "short_name": "polymer-cross-devices",
+  "description": "Application that can be controlled by another device",
+  "start_url": "/",
+  "display": "standalone"
+}

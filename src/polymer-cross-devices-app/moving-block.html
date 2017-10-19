@@ -1,0 +1,60 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="moving-block">
+  <template>
+    <style>
+      .block {
+        background-color: #f00;
+        display: block;
+        height: 20px;
+        left: 50%;
+        margin-right: -50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+      }
+    </style>
+    <div id="block" class="block"></div>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MovingBlock extends Polymer.Element {
+      static get is() {
+        return 'moving-block';
+      }
+
+      constructor() {
+        super();
+      }
+
+      ready() {
+        super.ready()
+        window.addEventListener('keydown', this._move);
+      }
+
+      _move(e) {
+        switch (e.keyCode) {
+          case 37:
+            console.log("Left");
+            break;
+          case 38:
+            console.log("Up");
+            break;
+          case 39:
+            console.log("Right");
+            break;
+          case 40:
+            console.log("Down");
+            break;
+        }
+      }
+    }
+
+    window.customElements.define(MovingBlock.is, MovingBlock);
+  </script>
+</dom-module>
