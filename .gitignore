@@ -1,3 +1,13 @@
+
+# Created by https://www.gitignore.io/api/node,bower,polymer,visualstudiocode
+
+### Bower ###
+bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
+
+### Node ###
 # Logs
 logs
 *.log
@@ -24,7 +34,6 @@ coverage
 .grunt
 
 # Bower dependency directory (https://bower.io/)
-bower_components
 
 # node-waf configuration
 .lock-wscript
@@ -57,3 +66,16 @@ typings/
 # dotenv environment variables file
 .env
 
+
+### Polymer ###
+#Installed components via bower
+bower_components/
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+# End of https://www.gitignore.io/api/node,bower,polymer,visualstudiocode
